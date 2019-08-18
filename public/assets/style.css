@@ -1,0 +1,316 @@
+body {
+	background-color: #DCEFFE;
+	width: auto;
+	height: auto;
+}
+
+/* 边框 */
+.container {
+	width: 900px;
+	margin: 0 auto;
+	background-color: #FFFFFF;
+}
+
+/* 头部大小 */
+.mui-bar {
+	margin: 0 0 20px 0;
+	height: 90px;
+	padding: 0px 30px 0px 30px;
+	border-bottom: 2px solid #E1E1E1;
+}
+.loginUser{
+	width: auto;
+	height: 30px;
+	line-height: 30px;
+	color: #11B273;
+	display: inline-block;
+}
+.head-right{
+	float: right;
+	width: auto;
+	height: 30px;
+	line-height: 30px;
+	color: #11B273;
+}
+.head-right a{
+	text-decoration: none;
+	color: #11B273;
+}
+
+/* 头部左边大小 */
+.head-box .head-left {
+	width: 120px;
+	height: 25px;
+	display: inline-block;
+}
+
+.head-box .head-left span {
+	display: inline-block;
+	height: 33px;
+	width: 10px;
+	background-color: #FF0000;
+}
+
+/* 头部标题大小 */
+.head-box .head-left h1 {
+	display: inline-block;
+	float: right;
+	font-size: 25px;
+	color: #FF0000;
+}
+
+/* 搜索框位置 */
+.head-box .search {
+	display: inline-block;
+	float: right;
+	height: 30px;
+}
+
+/* 搜索框 */
+.head-box .search input {
+	height: 30px;
+	width: 200px;
+	border: 2px solid #E1E1E1;
+	border-radius: 5px;
+	text-indent: 8px;
+}
+
+.head-box .search img {
+	display: block;
+	height: 23px;
+	position: absolute;
+	margin-top: -25px;
+	margin-left: 175px;
+}
+
+
+/* 内容区域按钮 */
+.content{
+	width: 900px;
+	height: auto;
+	background-color: #FFF;
+}
+.content .contentTit{
+	width: auto;
+	height: 50px;
+	position: relative;
+	left: 50%;
+	margin-left: -120px;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+.content .contentTit button{
+	
+	font-size: 17px;
+	width: 100px;
+	height: 50px;
+	background-color: skyblue;
+	color: white;
+	margin-right: 20px;
+	
+	/* 去掉自带样式 */
+	border:0px;
+	box-shadow: none;
+	outline: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+}
+/* 写博客 */
+.content .writeBlog{
+	width: 880px;
+	height: 100px;
+	background-color: #F7F8FA;
+	margin: 10px 10px;
+	padding-bottom: 10px;
+	position: relative;
+	display: none;
+}
+.content .writeBlog input{
+	width: 850px;
+	height: 35px;
+	margin: 10px 0px 10px 10px;
+	border: 1px solid #00B7EE;
+	text-indent: 10px;
+	font-size: 16px;
+}
+.content .writeBlog button{
+	/* 去掉自带样式 */
+	border: 0px;
+	box-shadow: none;
+	outline: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+	width: 50px;
+	height: 25px;
+	display: block;
+	color: white;
+	background-color: #4B97DB;
+	position: absolute;
+	right: 50px;
+}
+
+
+.content .contentArea{
+	width: 900px;
+	height: 100%;
+		
+}
+.content #contentArea ul li{
+	width: 900px;
+	height: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	position: relative;
+	border: 1px solid #C0CECB;
+}
+
+/* 左边头像 */
+.questionAreaImg{
+	width: 100px;
+	height: 100%;
+	border: 1px solid white;
+	display: inline-block;
+	background-color: #FBFBFD;
+	padding-top: 30px;
+	
+}
+.questionAreaImg img{
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	position: relative;
+	left: 50%;
+	margin-left: -25px;
+	display: inline-block;
+}
+.questionAreaImg .username{
+	width: 100px;
+	text-align: center;
+	display: inline-block;
+	font-size: 14px;
+	padding: 10px;
+	color: #4B97DB;
+}
+/* 右边区域 */
+.qustionAreaContent{
+	display: inline-block;
+	width: 750px;
+	margin: 10px;
+	height: auto;
+
+}
+/* 标题 */
+.qustionAreaContent .title{
+	top: 0px;
+	display: block;
+	color: black;
+	font-family: "宋体";
+	font-size: 14px;
+	line-height: 25px;
+}
+/* 回答 */
+.qustionAreaContent .userReply{
+	font-size: 14px;
+	color: #CCCCCC;
+	line-height: 20px;
+	margin-top: 20px;
+}
+.qustionAreaContent .userReply p{
+	display: inline-block;
+	border: none;
+	text-indent: 2em;
+}
+/* 底部时间 */
+.qustionAreaBottom{
+	width: 750px;
+	height: auto;
+	margin-left: 100px;
+	margin-bottom: 20px;
+}
+.qustionAreaBottomItem{
+	position: relative;
+	width: auto;
+	height: auto;
+	font-size: 14px;
+	color: #CCCCCC;
+	margin-bottom: 10px;
+	margin-left: 50%;
+}
+.qustionAreaBottomButton{
+	
+	/* 去掉自带样式 */
+	box-shadow: none;
+	outline: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+	background-color: white;
+	color: #00B7EE;
+	border: 1px solid #00B7EE;
+	line-height: 20px;
+	padding: 0px 10px;
+	margin-right: 50px;
+}
+.qustionAreaBottom span{
+	display: inline-block;
+	right: 40px;
+}
+.time{
+	display: block;
+	float: right;
+}
+/* 回复界面 */
+.reply{
+	width: 750px;
+	height: 90px;
+	background-color: #F7F8FA;
+	padding-bottom: 10px;
+	position: relative;
+	display: none;
+}
+.reply input{
+	width: 700px;
+	height: 35px;
+	margin: 10px 0px 10px 10px;
+	border: 1px solid #00B7EE;
+	text-indent: 10px;
+	font-size: 16px;
+}
+.reply button{
+	
+	/* 去掉自带样式 */
+	border: 0px;
+	box-shadow: none;
+	outline: none;
+	cursor: pointer;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+	width: 50px;
+	height: 25px;
+	display: block;
+	color: white;
+	background-color: #4B97DB;
+	position: absolute;
+	right: 50px;
+
+}
+
+
+
+
+
+
+
+
+
+

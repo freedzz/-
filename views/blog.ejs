@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<title>个人博客</title>
+	</head>
+	<link rel="stylesheet" href="../public/assets/reset.min.css">
+	<link rel="stylesheet" href="../public/assets/style.css">
+	<!-- 引入jq -->
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<body>
+		<div class="container">
+			<header class="mui-bar mui-bar-nav">
+				<div class="loginUser">当前登录用户：<span></span></div>
+				<div class="head-right"><a href="/login">登录</a>	<a href="/register">注册</a></div>
+				<div class="head-box">
+					<div class="head-left">
+						<span></span>
+						<h1 class="mui-title">个人博客</h1>
+					</div>
+					<div class="search">
+						<input type="text" />
+						<img src="../public/img/search.png">
+					</div>
+				</div>
+			</header>
+			<div class="content">
+				<div class="contentTit">
+					<button>浏览博客</button>
+					<button class="write">写博客</button>
+				</div>
+				<div class="writeBlog">
+					<input type="text">
+					<button type="button">发布</button>
+				</div>
+				<article id="contentArea">
+					<ul>
+						
+						<% datas.forEach(function(data){ %>
+						<%  if(data.title == ''){  %>
+						<%		return 	%>
+					<%	}else{%>
+							
+							<li>
+							<div class="questionAreaImg">
+								<img src="../public/img/head1.jpeg" alt="头像">
+								<div class="username"><%= data.user %></div>
+							</div>
+							<div class="qustionAreaContent">
+								<div class="title"><%= data.title %></div>
+								<% data.reply.forEach(function(item){ %>
+								<% if(item.user == ""){%>
+								<%	return %>
+								<% }else{ %>
+									<div class="userReply">
+									<div class="name"><span><%= item.user %></span>：</div>
+									<p><%= item.context %></p>
+									<span class="time"><%= item.replyTime %></span>
+								</div>
+								<% }  %>
+								
+								<% }) %>
+							</div>
+							<div class="qustionAreaBottom">
+								<div class="qustionAreaBottomItem">
+									<button class="qustionAreaBottomButton">我也来说一句</button>
+									<span><%= data.time %></span>
+								</div>
+								<div class="reply">
+									<input type="text">
+									<button type="button">回复</button>
+								</div>
+							</div>
+
+						</li>
+							
+						<%} %>
+						
+						
+						<% }) %>
+
+					</ul>
+				</article>
+			</div>
+
+		</div>
+	</body>
+	<script>
+		$(document).ready(function() {
+			/* 回复动画效果 */
+			$(".qustionAreaBottomButton").click(function() {
+				$(this).parent().parent().find('.reply').slideToggle();
+			})
+			
+			/* 发布动画效果 */
+			$(".contentTit").find(".write").click(function(){
+				$(this).parent().parent().find(".writeBlog").slideToggle();
+			})
+
+			/* 设置用户名 */
+			$(".loginUser").find('span').text(sessionStorage.getItem('username'))
+			
+			/****************/
+			/* 提交评论信息 */
+			/***************/
+			var reply = {};
+			var context;
+			$('.reply').find("button").click(function(){
+				//得到要评论的楼主
+				var Landlord = $(this).parents('li').find('.questionAreaImg').find('.username').text();
+				
+				context = $(this).prev().val();
+				var user = sessionStorage.getItem('username');
+				var replyTime = new Date().Format("yyyy-MM-dd hh:mm:ss");
+				var time = $(this).parents('li').find(".qustionAreaBottomItem").find("span").text();
+				
+				console.log(time)
+				//reply = {user:user,context:context,replyTime:replyTime}
+				
+				var arr = {
+					Landlord:Landlord,
+					user:user,
+					context:context,
+					replyTime:replyTime,
+					time:time
+				}
+				
+				//var arr = [{Landlord:Landlord},{reply:reply}]
+				
+				//发送数据到后台
+				$.ajax({
+				type:'post',
+				url:'/blog/reply',
+				data:arr,
+				success:function(data){
+						//window.location.href = "/blog";
+						location.reload();
+						//alert('......');
+					}
+				});	
+			})
+			
+			/**********************/
+			/* 提交发布信息到后台 */
+			/*********************/
+			$(".writeBlog").find("button").click(function(){
+				
+			var title =  $(this).prev().val();
+			var user = sessionStorage.getItem('username');
+			var time = new Date().Format("yyyy-MM-dd hh:mm:ss");
+			
+			
+			//发送数据到后台
+			$.ajax({
+			type:'post',
+			url:'/blog/title',
+			data:{username:user,title:title,time:time},
+			success:function(data){
+					//window.location.href = "/blog";
+					location.reload();
+					//alert('......');
+				}
+			});
+				
+				
+				
+			})
+			
+			console.log($(".writeBlog").find("button"))
+			
+			
+			
+			
+			
+			
+			
+/* 得到特定格式的时间 */
+Date.prototype.Format = function (fmt) { // author: meizz
+    var o = {
+        "M+": this.getMonth() + 1, // 月份
+        "d+": this.getDate(), // 日
+        "h+": this.getHours(), // 小时
+        "m+": this.getMinutes(), // 分
+        "s+": this.getSeconds(), // 秒
+        "q+": Math.floor((this.getMonth() + 3) / 3), // 季度
+        "S": this.getMilliseconds() // 毫秒
+    };
+    if (/(y+)/.test(fmt))
+        fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o)
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+            return fmt;
+
+		}	
+		});
+	</script>
+</html>

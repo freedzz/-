@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录</title>
+		<link rel="stylesheet" href="../public/assets/reset.min.css">
+		<style type="text/css">
+			body{
+				padding-top: 100px;
+			}
+			.box {
+				width: 500px;
+				margin: 0 auto;
+				border: 2px solid #E1E1E1;
+				border-radius: 3px;
+			}
+			h1{
+				text-align: center;
+				font-size: 30px;
+				padding-bottom: 30px;
+				padding-top: 30px;
+				border-bottom: 1px solid #E1E1E1;
+				margin-bottom: 30px;
+			}
+			form{
+				font-family: "宋体";
+				width: 250px;
+				margin: 0 auto;
+				padding-bottom: 30px;
+			}
+			.user{
+				margin-bottom: 10px;
+			}
+			input{
+				line-height: 23px;
+				min-width: 180px;
+				max-width: 200px;
+				text-indent: 5px;
+				border:2px solid #E1E1E1;
+				border-radius: 3px;
+			}
+			.password{
+				margin-bottom: 20px;
+			}
+			.button{
+				margin-left: 30px;
+				width: 210px;
+			}
+			button{
+				margin-right: 5px;
+				width: 60px;
+			}
+		</style>
+		<!-- 引入jq -->
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	</head>
+	<body>
+		<div class="box">
+			<h1>系统登录</h1>
+			<form>
+				<div class="user">用户名：<input type="text" placeholder="请输入您的用户名!"/></div>
+				<div class="password">密&nbsp;码：<input type="text" placeholder="请输入您的登录密码!"/></div>
+				<div class="button">
+					<button type="button" class="login">登录</button>
+					<button type="button">重置</button>
+					<a href="/register" target="_self">注册账户</a>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+			
+			/* 登录操作 */
+			/* 取得登录的用户，返回给后台，然后
+			后台处理数据，数据正确跳转到blog界面 */
+			
+			//得到输入的值
+			$(".button").find(".login").click(function(){
+				var user = $('.user').find("input").val();
+				
+				console.log(user);
+				//返回取得的值
+				$.ajax({
+				type:'post',
+				url:'/login',
+				data:{user:user},
+				success:function(data){
+					
+					sessionStorage.setItem("username",user);
+					window.location.href = "/blog";
+					
+				}
+				});
+				
+				
+			})
+			
+			
+			
+			
+		});
+	
+	
+	</script>
+</html>

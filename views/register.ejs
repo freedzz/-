@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>注册</title>
+		<!-- 引入jq -->
+		<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+		<link rel="stylesheet" href="../public/assets/reset.min.css">
+		<style type="text/css">
+			body{
+				padding-top: 50px;
+				padding-bottom: 100px;
+			}
+			.box {
+				width: 500px;
+				margin: 0 auto;
+				border: 2px solid #E1E1E1;
+				border-radius: 3px;
+			}
+			h1{
+				text-align: center;
+				font-size: 30px;
+				padding-bottom: 30px;
+				padding-top: 30px;
+			}
+			form{
+				font-family: "宋体";
+				width: 350px;
+				margin: 0 auto;
+				padding-bottom: 30px;
+			}
+			.user{
+				margin-bottom: 20px;
+			}
+			.size{
+				line-height: 23px;
+				text-indent: 5px;
+				border:2px solid #E1E1E1;
+				height: 30px;
+				border-radius: 3px;
+			}
+			.password{
+				margin-bottom: 20px;
+			}
+			.button{
+				margin-left: 30px;
+				width: 210px;
+				padding-top: 10px;
+				font-family: "宋体";
+				width: 210px;
+				margin: 0 auto;
+				padding-bottom: 20px;
+			}
+			button{
+				margin-right: 5px;
+				width: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			<div style="border-bottom: 1px solid #E1E1E1;">
+			<h1>用户注册</h1>
+			<form>
+				<div class="user">用户名：<input class="size" type="text" placeholder="请输入您的用户名!" size="40"/></div>
+				<div class="password">密&nbsp;码：<input class="size" type="text" placeholder="请输入您的密码!" size="40"/></div>
+				<div class="password">密&nbsp;码：<input class="size" type="text" placeholder="请输入您的密码!" size="40"/></div>
+				<div class="password">性&nbsp;别：
+					<input type="radio" name="xx"/>男
+					<input type="radio" name="xx"/>女
+				</div>
+				<div class="password">职&nbsp;业：<select style="width: 267px; height: 33px; border: 2px solid #E1E1E1; border-radius: 3px;">
+						<option value ="">学生</option>
+						<option value ="">老师</option>
+						<option value ="">前端开发</option>
+						<option value="">后端开发</option>
+					</select>
+				</div>
+				<div class="password">爱&nbsp;好：
+					<input type="checkbox" />旅游
+					<input type="checkbox" />看书
+					<input type="checkbox" />跑步
+					<input type="checkbox" />宠物
+				</div>
+				<div style="margin-bottom: 20px;">
+					<textarea rows="5" cols="27"></textarea>
+					<span style="float: left; margin-top: 104px;">自我介绍：</span>
+				</div>
+			</form>
+		</div>
+		<div class="button">
+			<button type="button" class="register">登录</button>
+			<button type="button">重置</button>
+			<a href="/login" target="_self">已有账户</a>
+		</div>
+		</div>
+	</body>
+	<script>
+		$(document).ready(function(){
+			
+			$('.button').find('.register').click(function(){
+				
+				//得到注册的用户名
+				var username = $('.user').find("input").val();
+				
+				//把数据返回给服务器
+				
+				//console.log(username)
+				
+				$.ajax({
+					type:'post',
+					url:'/register',
+					data:{username:username},
+					success:function(data){
+							//window.location.href = "/blog";
+							
+							sessionStorage.setItem("username",username);
+							window.location.href = "/blog";
+						}
+					
+					
+					
+					
+				})
+				
+				
+			})
+			
+			
+			
+			
+			
+			
+		})
+	
+	</script>
+</html>
